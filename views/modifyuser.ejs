@@ -3,9 +3,12 @@
 
   </head>
   <body>
+    <!-- Include the menu -->
     <% include partials/header %>
+    <h1>Modify a User</h1>
     <form action="/modifyuser" method="post">
       <select name="nameSelect">
+        <!-- Loop through the names array and display each of the names in a select menu -->
         <% names.forEach(function(person) { %>
           <option value="<%= person.id %>"><%= person.first_name %> <%= person.last_name %></option>
         <% }) %>

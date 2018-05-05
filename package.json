@@ -1,12 +1,16 @@
 {
-  "name": "nme",
+  "name": "CRUD-mongodb-nodejs",
   "version": "1.0.0",
-  "description": "",
+  "description": "A web application using the Express framework where a user can Create, Read, Update, or Delete entries in a MongoDB database.",
+  "repository" : {
+    "type": "git",
+    "url": "https://github.com/jasonpdk/CRUD-mongodb-nodejs"
+  }
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jason Keane",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",

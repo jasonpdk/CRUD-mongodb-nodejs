@@ -3,15 +3,17 @@
 
   </head>
   <body>
+    <!-- Include the menu -->
     <% include partials/header %>
     <h1>Users</h1>
-    <% studentList.forEach(function(student){ %>
-        <b><%=student.first_name %> <%=student.last_name %></b>
-        <br>ID: <%= student._id %>
-        <br />Age: <%=student.age %>
-        <br />Gender: <%=student.gender %>
-        <br />Occupation: <%=student.occupation %>
-        <br />Address: <%= student.address.street %>, <%= student.address.town %>, <%= student.address.county %>, <%= student.address.country %>
+    <!-- Loop through the userList array and for each object in the array display all of it's information -->
+    <% userList.forEach(function(user){ %>
+        <b><%=user.first_name %> <%=user.last_name %></b>
+        <br>ID: <%= user._id %>
+        <br />Age: <%=user.age %>
+        <br />Gender: <%=user.gender %>
+        <br />Occupation: <%=user.occupation %>
+        <br />Address: <%= user.address.street %>, <%= user.address.town %>, <%= user.address.county %>, <%= user.address.country %>
         <br /><br />
     <% }) %>
   </body>
