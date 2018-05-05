@@ -1,0 +1,30 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <% include partials/header %>
+    <form action="/modifyuser" method="post">
+      <select name="nameSelect">
+        <% names.forEach(function(person) { %>
+          <option value="<%= person.id %>"><%= person.first_name %> <%= person.last_name %></option>
+        <% }) %>
+      </select>
+
+      <select name="field">
+        <option value="first_name">First Name</option>
+        <option value="last_name">Last Name</option>
+        <option value="age">Age</option>
+        <option value="gender">Gender</option>
+        <option value="occupation">Occupation</option>
+        <option value="street">Street</option>
+        <option value="town">Town</option>
+        <option value="county">County</option>
+        <option value="country">Country</option>
+      </select>
+
+      <input type="text" name="value" value="value" />
+      <input type="submit">
+    </form>
+  </body>
+</html>

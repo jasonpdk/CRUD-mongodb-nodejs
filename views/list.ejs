@@ -1,0 +1,18 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <% include partials/header %>
+    <h1>Users</h1>
+    <% studentList.forEach(function(student){ %>
+        <b><%=student.first_name %> <%=student.last_name %></b>
+        <br>ID: <%= student._id %>
+        <br />Age: <%=student.age %>
+        <br />Gender: <%=student.gender %>
+        <br />Occupation: <%=student.occupation %>
+        <br />Address: <%= student.address.street %>, <%= student.address.town %>, <%= student.address.county %>, <%= student.address.country %>
+        <br /><br />
+    <% }) %>
+  </body>
+</html>
