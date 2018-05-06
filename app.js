@@ -7,6 +7,7 @@ var express = require('express');
 var path = require('path');
 var mongo = require('mongodb');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -148,11 +149,22 @@ app.post('/modifyuser', function(req, res) {
       var oID = new mongo.ObjectID(req.body.nameSelect);
 
       // put the update value in an object - {field:value}
+      var addressFields = ["street", "town", "county", "country"];
       var updateValue = {};
-      updateValue[req.body.field] = req.body.value;
+
+      var field = req.body.field;
+      var value = req.body.value;
+
+      // if part of address
+      if (addressFields.includes(req.body.field)) {
+        var loc = "address."+field;
+        updateValue[loc] = value;
+      } else {
+        updateValue[req.body.field] = req.body.value;
+      }
 
       // update the entry
-      collection.updateOne({"_id": oID}, { $set: updateValue}, function(err, result) {
+      collection.update({"_id": oID}, { $set: updateValue}, function(err, result) {
         if (err) {
           throw err;
         } else {
@@ -229,6 +241,33 @@ app.post('/removeuser', function(req, res) {
       });
     }
   });
+});
+
+/* MONGOOSE Testing */
+var schema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  first_name:String,
+  last_name: String,
+  age: Number,
+  occupation: String,
+  address: {
+    street: String,
+    town: String,
+    county: String,
+    country: String
+  }
+});
+
+mongoose.model('users', schema);
+
+app.get('/mongoose', function(req, res) {
+  mongoose.connect("mongodb://localhost/sampsite");
+
+  mongoose.model('users').find({"first_name":"Jason"}, function(err, users) {
+    res.send(users);
+  });
+
+  mongoose.model('users').update({"first_name":"Jason"}, {})
 });
 
 // listen for requests on port 20000
